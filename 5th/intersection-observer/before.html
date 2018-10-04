@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Before</title>
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: lightgrey;
+            margin: 10px 0;
+        }
+
+        #target {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div id="target" class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+<script>
+const target = document.getElementById('target');
+let viewport = getViewportSize();
+
+function getViewportSize() {
+    return {
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight
+    };
+}
+
+window.addEventListener('resize', () => {
+    viewport = getViewportSize();
+}, false);
+
+window.addEventListener('scroll', () => {
+    const {width, height} = viewport;
+    const rect = target.getBoundingClientRect();
+
+    // 水平方向において要素の一部または全部が画面内に存在し得るか
+    const isInHorizontal = rect.left > 0 && rect.left < width ||
+        rect.right > 0 && rect.right < width ||
+        rect.left < 0 && rect.right > width;
+
+    // 垂直方向において要素の一部または全部が画面内に存在し得るか
+    const isInVertical = rect.top > 0 && rect.top < height ||
+        rect.bottom > 0 && rect.bottom < height ||
+        rect.top < 0 && rect.bottom > height;
+
+    // 要素の一部または全部が画面内に存在するか
+    if (isInHorizontal && isInVertical) {
+        console.log('要素が画面内に入りました');
+    } else {
+        console.log('要素が画面内から出ました');
+    }
+}, false);
+</script>
+
+</body>
+</html>

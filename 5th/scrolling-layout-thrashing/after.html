@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        .ball {
+            position: absolute;
+            transform: translateZ(0);
+            top: 0px;
+            width: 30px;
+            height: 30px;
+            margin: 50px 0;
+            padding: 10px;
+            color: white;
+            border-radius: 30px;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet) !important;
+        }
+
+        #first {
+            left: 30px;
+        }
+
+        #second {
+            left: 90px;
+        }
+
+        #third {
+            left: 150px;
+        }
+
+        #fourth {
+            left: 210px;
+        }
+
+        #fifth {
+            left: 270px;
+        }
+
+        #sixth {
+            left: 330px;
+        }
+
+        #seventh {
+            left: 390px;
+        }
+
+        #eighth {
+            left: 450px;
+        }
+
+        #nineth {
+            left: 510px;
+        }
+    </style>
+</head>
+<body>
+<div id="first" class="ball"></div>
+<div id="second" class="ball"></div>
+<div id="third" class="ball"></div>
+<div id="fourth" class="ball"></div>
+<div id="fifth" class="ball"></div>
+<div id="sixth" class="ball"></div>
+<div id="seventh" class="ball"></div>
+<div id="eighth" class="ball"></div>
+<div id="nineth" class="ball"></div>
+<script>
+    const balls = Array.from(document.getElementsByClassName('ball'));
+    let currentY = window.pageYOffset;
+    let previousY = 0;
+
+    window.addEventListener('scroll', () => {
+        currentY = window.pageYOffset;
+
+        const deltaY = currentY - previousY;
+        const heights = [];
+
+        // 対象のすべての要素のclientHeightをまとめて参照する
+        for (let i = 0, iz = balls.length; i < iz; i++) {
+            heights[i] = balls[i].clientHeight;
+        }
+
+        // 保存しておいたclientHeightをもとにまとめて更新する
+        for (let i = 0, iz = balls.length; i < iz; i++) {
+            const dist = deltaY * (i + 1);
+            balls[i].style.height = heights[i] + dist + 'px';
+        }
+
+        previousY = currentY;
+    });
+</script>
+</body>
+</html>

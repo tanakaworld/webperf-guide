@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Service Worker Sample</title>
+    <link rel="stylesheet" href="app.css">
+    <script>
+      if (navigator.serviceWorker) {
+        // service-worker.jsをService Workerとして登録する
+        navigator.serviceWorker.register('service-worker.js', {
+          scope: '/'
+        }).then(registration => {
+          return navigator.serviceWorker.ready;
+        }).then(registration => {
+          console.log('登録に成功しました', registration);
+        }).catch(error => {
+          console.log('登録に失敗しました', error);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Service Worker Sample</h1>
+    <img src="lena.jpg" height="512" width="512">
+    <script src="app.js"></script>
+  </body>
+</html>

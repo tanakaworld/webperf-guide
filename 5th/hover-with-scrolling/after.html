@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>After</title>
+
+    <style>
+.box {
+    width: 200px;
+    height: 200px;
+    margin: 10px 0;
+    border: solid 1px gray;
+    background-color: lightgrey;
+}
+
+.is-not-scrolling .box:hover {
+    background-color: red;
+}
+    </style>
+</head>
+<body class="is-not-scrolling">
+
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+
+<script>
+const CLASS_NAME = 'is-not-scrolling';
+const body = document.body;
+let timer;
+
+window.addEventListener('scroll', () => {
+    // is-not-scrollingクラスが付いていたら外す
+    if (body.classList.contains(CLASS_NAME)) {
+        body.classList.remove(CLASS_NAME);
+    }
+
+    // scrollイベントが発生するたびに新規のタイマーがセットされる
+    // スクロール操作が発生しなくならないとクラスは追加されない
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        body.classList.add(CLASS_NAME);
+    }, 200);
+}, false);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>After</title>
+
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: lightgrey;
+            margin: 10px 0;
+        }
+
+        #target {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div id="target" class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+<script>
+const target = document.getElementById('target');
+
+const observer = new IntersectionObserver(entries => {
+    const entry = entries[0];
+
+    // 要素が少しでも画面内に入っていれば真
+    if (entry.intersectionRatio > 0) {
+        console.log('要素が画面内に入りました');
+    } else {
+        console.log('要素が画面内から出ました');
+    }
+});
+observer.observe(target);
+</script>
+
+</body>
+</html>
